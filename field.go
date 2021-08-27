@@ -56,3 +56,8 @@ func (f *Field) SetFields(fs ...*Field) *Field {
 	f.Fields = fs
 	return f
 }
+
+func (f *Field) AddField(fs *Field) *Field {
+	f.Fields = append(f.Fields, fs)
+	return f
+}

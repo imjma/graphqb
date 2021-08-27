@@ -18,6 +18,10 @@ type Query struct {
 	Err    error
 }
 
+func NewQuery(qt string) *Query {
+	return &Query{Type: qt}
+}
+
 func (q *Query) Stringify() string {
 	var sb strings.Builder
 
