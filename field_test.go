@@ -14,5 +14,6 @@ func TestField_Stringify(t *testing.T) {
 
 	f.SetFields(NewField("f1"), NewField("f2"))
 	f.SetArguments(NewArgument("argBool", true), NewArgument("argInt", 123), NewArgument("argString", "str"))
-	assert.Equal(t, `field(argBool:true,argInt:123,argString:"str"){f1,f2}`, f.Stringify())
+	f.SetAlias("alias")
+	assert.Equal(t, `alias:field(argBool:true,argInt:123,argString:"str"){f1,f2}`, f.Stringify())
 }

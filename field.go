@@ -4,6 +4,7 @@ import "strings"
 
 type Field struct {
 	Name      string
+	Alias     string
 	Arguments []*Argument
 	Fields    []*Field
 	Err       error
@@ -15,6 +16,10 @@ func NewField(name string) *Field {
 
 func (f *Field) Stringify() string {
 	var sb strings.Builder
+
+	if len(f.Alias) > 0 {
+		sb.WriteString(f.Alias + qColumn)
+	}
 
 	sb.WriteString(f.Name)
 
@@ -59,5 +64,10 @@ func (f *Field) SetFields(fs ...*Field) *Field {
 
 func (f *Field) AddField(fs *Field) *Field {
 	f.Fields = append(f.Fields, fs)
+	return f
+}
+
+func (f *Field) SetAlias(alias string) *Field {
+	f.Alias = alias
 	return f
 }
