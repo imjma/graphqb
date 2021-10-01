@@ -10,6 +10,8 @@ type Argument struct {
 	Value interface{}
 }
 
+type ArgumentVariable string
+
 func NewArgument(name string, value interface{}) *Argument {
 	return &Argument{
 		Name:  name,
@@ -26,6 +28,8 @@ func (a *Argument) Stringify() string {
 		str = fmt.Sprintf("%d", v)
 	case string:
 		str = fmt.Sprintf(`"%s"`, v)
+	case ArgumentVariable:
+		str = fmt.Sprintf(`$%s`, v)
 	default:
 		return ""
 	}

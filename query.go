@@ -9,6 +9,7 @@ const (
 	qLP     = "("
 	qRP     = ")"
 	qColumn = ":"
+	qSpace  = " "
 )
 
 type Query struct {
@@ -29,6 +30,11 @@ func (q *Query) Stringify() string {
 	if len(q.Type) > 0 {
 		sb.WriteString(q.Type)
 	}
+	if len(q.Name) > 0 {
+		sb.WriteString(qSpace)
+		sb.WriteString(q.Name)
+	}
+
 	sb.WriteString(qLB)
 	for k, field := range q.Fields {
 		if k != 0 {
