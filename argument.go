@@ -11,6 +11,7 @@ type Argument struct {
 }
 
 type ArgumentVariable string
+type ArgumentEnum string
 
 func NewArgument(name string, value interface{}) *Argument {
 	return &Argument{
@@ -30,6 +31,8 @@ func (a *Argument) Stringify() string {
 		str = fmt.Sprintf(`"%s"`, v)
 	case ArgumentVariable:
 		str = fmt.Sprintf(`$%s`, v)
+	case ArgumentEnum:
+		str = fmt.Sprintf(`%s`, v)
 	default:
 		return ""
 	}
